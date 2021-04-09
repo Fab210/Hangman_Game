@@ -1,12 +1,12 @@
 var wordToFind = "";
-var tryToFindLetter = 0;
+var tryToFindLetter = 5;
 generateWordTofind();
 //searchLetterInWord();
 generateButtonsABC();
 
 function generateWordTofind() {
-  
-  this.wordToFind = "lolsdfssrtztsd SSsdfsdf22sdsdfsdfsdfdsfsdfsd";
+    document.getElementById("numbersOfTry").innerHTML = tryToFindLetter;
+  this.wordToFind = "lolsdfssrtzdfsdfsdfs sd";
   debugger
   this.wordToFind = this.wordToFind.toUpperCase();
   var wordInarray = wordToFind.split("");
@@ -17,20 +17,27 @@ function generateWordTofind() {
     document.addEventListener(
       "DOMContentLoaded",
       function () {
-        var generateLetters = document.createElement("span");
+        var generateLetters = document.createElement("div");
         
 
         //generateLetters.id = "letter " + element;
         generateLetters.innerText = element;
         generateLetters.className = "letter_"+ element + ' ' +'hideLetter';
-        generateLetters.style.visibility = "hidden";
+        generateLetters.style.borderBottomStyle = "solid";
+        generateLetters.style.borderBottomWidth = "1px";
+        generateLetters.style.borderBottomColor = "#000";
+        generateLetters.style.color = "#fff";
+        generateLetters.style.marginLeft = "5px";
+        generateLetters.style.paddingLeft = "5px";
+        generateLetters.style.width= "20px";
+        
+        generateLetters.style.paddingRight = "5px";
         var wordToFindDiv = document.getElementById("wordToFind");
         wordToFindDiv.appendChild(generateLetters);
       },
       false
     );
   }
- 
 }
 
 function searchLetterInWord(letter) {
@@ -38,41 +45,31 @@ function searchLetterInWord(letter) {
   //var wordInarray = this.wordToFind.split("");
   debugger;
 
-  if (tryToFindLetter < 5) {
+  if (tryToFindLetter != 1) {
     var searchLetter = wordToFind.includes(letter);
     if (searchLetter == true) {
         debugger
       alert("you find a letter !");
       var x = document.getElementsByClassName("letter_"+ letter);
       for (i = 0; i < x.length; i++) {
-        x[i].style.visibility = "visible";
+        x[i].style.color = "#000";
       }
      
     } else {
       alert("no such letter found");
-      tryToFindLetter++;
+      debugger
+      tryToFindLetter--;
+      document.getElementById("numbersOfTry").innerHTML = tryToFindLetter;
+     
+
+      
     }
   } else {
     alert("game over !");
+    
+      document.getElementById("numbersOfTry").innerHTML = 0
   }
 
-  /*for (let i = 0; i < wordInarray.length; i++) {
-    debugger;
-    const element = wordInarray[i];
-    if (element === letter && tryToFindLetter < 5) {
-      alert("you find a letter!");
-    }
-    
-    else {
-      alert("no such letter found");
-      tryToFindLetter++;
-    }
-    if (tryToFindLetter == 5) {
-      alert("game over !");
-      return;
-    }
-  }*/
-  //console.log(wordInarray);
 }
 
 function generateButtonsABC() {
@@ -89,14 +86,14 @@ function generateButtonsABC() {
         button.type = "button";
         button.id = "letter " + element;
         button.value = element;
-        button.className = "btn";
+        button.className = "generatedButtons" + " btn btn-primary";
 
         button.onclick = function () {
           // ...
           searchLetterInWord(button.value);
         };
 
-        var container = document.getElementById("container");
+        var container = document.getElementById("buttonsContainer");
         container.appendChild(button);
       },
       false
