@@ -21,3 +21,28 @@
     margin: 7px;
     width: 60px;
 }
+
+
+/* HANGMAN SVG */
+svg {
+    margin: 0 auto;
+    border: 1px solid black;
+}
+line {
+    stroke: black;
+    stroke-width: 4;
+}
+
+circle{
+    stroke: black;
+    stroke-width: 4;
+    fill: white;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+#line_1 , #line_2 ,#line_3 ,#line_4,#body {
+    visibility: hidden;
+}

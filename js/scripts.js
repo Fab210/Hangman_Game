@@ -1,59 +1,31 @@
 var wordToFind = "";
 var wordObject;
-var tryToFindLetter = 5;
+var tryToFindLetter = 10;
+
 generateWordTofind();
-//searchLetterInWord();
-//getwordFromApi();
 generateButtonsABC();
 
-/*async function getwordFromApi() {
-  let apiResponse = await fetch('https://random-words-api.vercel.app/word')
-
-  let wordFromApi = await apiResponse.json();
-  debugger
-  wordToFind = await wordFromApi[0].word
-  generateWordTofind()
-}*/
 
 function generateWordTofind() {
+
   document.getElementById("numbersOfTry").innerHTML = tryToFindLetter;
-  debugger
-  //let result = await getwordFromApi();
-
-
-
-
-
-  //let wordFromApi = await apiResponse.json();
-
-  //this.wordToFind = await wordFromApi[0].word
-
-  //wordToFind = data[0].word
-  debugger
-  wordToFind = wordToFind.toUpperCase();
-  var wordInarray = wordToFind.split("");
-
-
 
   document.addEventListener(
     "DOMContentLoaded",
     function () {
       fetch('https://random-words-api.vercel.app/word')
         .then(response => response.json())
-        .then(data => renderQuotes(data))
+        .then(data => renderLetters(data))
 
-
-      function renderQuotes(data) {
-        debugger
+      function renderLetters(data) {
         wordToFind = data[0].word
         wordToFind = wordToFind.toUpperCase();
         var wordInarray = wordToFind.split("");
-        
+
         for (let i = 0; i < wordInarray.length; i++) {
           const element = wordInarray[i];
 
           var generateLetters = document.createElement("div");
-
 
           //generateLetters.id = "letter " + element;
           generateLetters.innerText = element;
@@ -72,52 +44,68 @@ function generateWordTofind() {
         }
       }
     }
-
-
-
-
   );
-
-
-
-
 }
 
 function searchLetterInWord(letter) {
-  //letter = "i";
-  //var wordInarray = this.wordToFind.split("");
-  debugger;
 
-  if (tryToFindLetter != 1) {
-    var searchLetter = wordToFind.includes(letter);
-    if (searchLetter == true) {
-      debugger
-      alert("you find a letter !");
-      var x = document.getElementsByClassName("letter_" + letter);
-      for (i = 0; i < x.length; i++) {
-        x[i].style.color = "#000";
-      }
-
-    } else {
-      alert("no such letter found");
-      debugger
-      tryToFindLetter--;
-      document.getElementById("numbersOfTry").innerHTML = tryToFindLetter;
-      document.getElementById("letter " + letter).disabled = true;
-
-
-
-
-    }
-  } else {
-    alert("game over !");
+  var searchLetter = wordToFind.includes(letter);
+  if (searchLetter == true) {
+    
+    alert("you find a letter !");
     document.getElementById("letter " + letter).disabled = true;
-    document.getElementById("numbersOfTry").innerHTML = 0
-    var x = document.getElementsByClassName("hideLetter");
+    var x = document.getElementsByClassName("letter_" + letter);
     for (i = 0; i < x.length; i++) {
       x[i].style.color = "#000";
     }
+  } else {
+    alert("no such letter found");
+    
+    tryToFindLetter--;
+    switch (tryToFindLetter) {
+      case 0:
+        alert("game over !");
+        document.getElementById("letter " + letter).disabled = true;
+        document.getElementById("numbersOfTry").innerHTML = 0
+        var x = document.getElementsByClassName("hideLetter");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.color = "#000";
+        }
+        document.getElementById("legR").style.visibility = "visible";
+        break;
+      
+      case 1:
+        document.getElementById("legL").style.visibility = "visible";
+        break;
+      case 2:
+        document.getElementById("armR").style.visibility = "visible";
+        break;
+      case 3:
+        document.getElementById("armL").style.visibility = "visible";
+        break;
+      case 4:
+        document.getElementById("bodyLine").style.visibility = "visible";
+        break;
+      case 5:
+        document.getElementById("head").style.visibility = "visible";
+        break;
+      case 6:
+        document.getElementById("line_4").style.visibility = "visible";
+        break;
+        case 7:
+        document.getElementById("line_3").style.visibility = "visible";
+        break;
+        case 8:
+        document.getElementById("line_2").style.visibility = "visible";
+        break;
+        case 9:
+        document.getElementById("line_1").style.visibility = "visible";
+        break;
 
+    }
+
+    document.getElementById("numbersOfTry").innerHTML = tryToFindLetter;
+    document.getElementById("letter " + letter).disabled = true;
   }
 
 }
@@ -139,7 +127,6 @@ function generateButtonsABC() {
         button.className = "generatedButtons" + " btn btn-primary";
 
         button.onclick = function () {
-          // ...
           searchLetterInWord(button.value);
         };
 
@@ -148,6 +135,5 @@ function generateButtonsABC() {
       },
       false
     );
-
   }
 }
