@@ -8,7 +8,7 @@ generateButtonsABC();
 
 function generateWordTofind() {
 
-  document.getElementById("numbersOfTry").innerHTML = tryToFindLetter;
+  document.getElementById("numbersOfTry").innerHTML = 'Guesses Remaining :' + tryToFindLetter;
 
   document.addEventListener(
     "DOMContentLoaded",
@@ -29,16 +29,16 @@ function generateWordTofind() {
 
           //generateLetters.id = "letter " + element;
           generateLetters.innerText = element;
-          generateLetters.className = "letter_" + element + ' ' + 'hideLetter';
+          generateLetters.className = "letter_" + element + ' ' + 'hideLetter' + ' ' + 'noselect';
           generateLetters.style.borderBottomStyle = "solid";
           generateLetters.style.borderBottomWidth = "1px";
           generateLetters.style.borderBottomColor = "#000";
-          generateLetters.style.color = "#fff";
-          generateLetters.style.marginLeft = "5px";
-          generateLetters.style.paddingLeft = "5px";
-          generateLetters.style.width = "20px";
+          generateLetters.style.color = "#F2F3FB";
+          generateLetters.style.marginLeft = "6px";
+          
+          generateLetters.style.width = "40px";
 
-          generateLetters.style.paddingRight = "5px";
+          generateLetters.style.textAlign = "center";
           var wordToFindDiv = document.getElementById("wordToFind");
           wordToFindDiv.appendChild(generateLetters);
         }
@@ -54,6 +54,7 @@ function searchLetterInWord(letter) {
     
     alert("you find a letter !");
     document.getElementById("letter " + letter).disabled = true;
+    document.getElementById("letter " + letter).style.backgroundColor = "#FC7474";
     var x = document.getElementsByClassName("letter_" + letter);
     for (i = 0; i < x.length; i++) {
       x[i].style.color = "#000";
@@ -66,7 +67,7 @@ function searchLetterInWord(letter) {
       case 0:
         alert("game over !");
         document.getElementById("letter " + letter).disabled = true;
-        document.getElementById("numbersOfTry").innerHTML = 0
+        document.getElementById("numbersOfTry").innerHTML = 'Guesses Remaining :' + 0
         var x = document.getElementsByClassName("hideLetter");
         for (i = 0; i < x.length; i++) {
           x[i].style.color = "#000";
@@ -104,8 +105,9 @@ function searchLetterInWord(letter) {
 
     }
 
-    document.getElementById("numbersOfTry").innerHTML = tryToFindLetter;
+    document.getElementById("numbersOfTry").innerHTML = 'Guesses Remaining :' + tryToFindLetter;
     document.getElementById("letter " + letter).disabled = true;
+    document.getElementById("letter " + letter).style.backgroundColor = "#FC7474";
   }
 
 }

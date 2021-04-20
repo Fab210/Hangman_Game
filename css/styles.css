@@ -1,58 +1,117 @@
-.title{
-    text-align: center;
+body{
+    background-color: #F2F3FB;
 }
 
-.hideLetter{
-    /*visibility: hidden;*/
-    border-bottom: solid;
+.container {
+    border-radius: 10px;
+    background: #F2F3FB;
+    box-shadow:  9px 9px 18px #c9cad0,
+                 -9px -9px 18px #ffffff;
+                 margin-top: 25px;
 }
 
-#wordToFind{
-    width: 100%;
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
+
+.title {
+  text-align: center;
+  padding: 20px;
+}
+
+.hideLetter {
+  /*visibility: hidden;*/
+  border-bottom: solid;
+}
+
+#wordToFind {
+  width: 55%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-#buttonsContainer{
-    padding-top: 50px;
-    margin: auto;
-    text-align: center;
-}
-#numbersOfTry{
-    text-align: center;
+  font-size: 3rem;
+  /*background-color: #fff;*/
+  margin: auto;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  
+  background: #F2F3FB;
+  box-shadow: 9px 9px 18px #c9cad0, -9px -9px 18px #ffffff;
 }
 
-.generatedButtons{
-    margin: 7px;
-    width: 60px;
+#numbersOfTry{
+    padding: 20px;
+    font-size: 1.5rem;
+}
+
+#buttonsContainer {
+  padding-top: 50px;
+  margin: auto;
+  text-align: center;
+}
+
+#numbersOfTry {
+  text-align: center;
+  padding-top: 30px;
+}
+
+.generatedButtons {
+  margin: 7px;
+  width: 60px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #7E90F8;
+    border-color: #7E90F8;
 }
 
 
 /* HANGMAN SVG */
+/*---------------------------------------*/
 svg {
-    margin: 0 auto;
-    border: 1px solid black;
-}
-line {
-    stroke: black;
-    stroke-width: 4;
+  margin: 0 auto;
+  /*border: 1px solid black;*/
+  background: #F2F3FB;
+  box-shadow: 9px 9px 18px #c9cad0, -9px -9px 18px #ffffff;
+  padding: 20px;
 }
 
-circle{
-    stroke: black;
-    stroke-width: 4;
-    fill: white;
+line {
+  stroke: black;
+  stroke-width: 4;
+}
+
+circle {
+  stroke: black;
+  stroke-width: 4;
+  fill: white;
 }
 
 .hide {
-    visibility: hidden;
+  visibility: hidden;
 }
 
-#line_1 , #line_2 ,#line_3 ,#line_4,#body {
-    visibility: hidden;
+#line_1,
+#line_2,
+#line_3,
+#line_4,
+#body {
+  visibility: hidden;
 }
 
-#hangmanSvg{
-    text-align: center;
+#hangmanSvg {
+  text-align: center;
+  padding: 20px;
 }
-
