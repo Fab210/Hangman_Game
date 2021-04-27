@@ -20,38 +20,39 @@
   <div class="container">
     <h1 class="title">Hangman Game</h1>
     <div id='wordToFind'></div>
+    <div id='definition'><button id="ShowButton" type="button" onclick="help()">Help</button></div>
     <div id="buttonsContainer" class="col-10"></div>
     <div id="numbersOfTry"></div>
-<div id="hangmanSvg">
-    <svg height="300" width="400">
-      
-      <line id="line_1" x1="10" y1="250" x2="270" y2="250"></line>
-      <line id="line_2" x1="100" y1="250" x2="100" y2="20"></line>
-      <line id="line_3" x1="100" y1="20" x2="200" y2="20"></line>
-      <line id="line_4" x1="200" y1="20" x2="200" y2="60"></line>
+    <div id="hangmanSvg">
+      <svg height="300" width="400">
 
-      <g id="body">
-        <g id="head">
-          <circle cx="200" cy="80" r="20" stroke="black" stroke-width="4" fill="white"></circle>
-          <g id="rEyes">
-            <circle cx="193" cy="80" r="2"></circle>
-            <circle cx="207" cy="80" r="2"></circle>
+        <line id="line_1" x1="10" y1="250" x2="270" y2="250"></line>
+        <line id="line_2" x1="100" y1="250" x2="100" y2="20"></line>
+        <line id="line_3" x1="100" y1="20" x2="200" y2="20"></line>
+        <line id="line_4" x1="200" y1="20" x2="200" y2="60"></line>
+
+        <g id="body">
+          <g id="head">
+            <circle cx="200" cy="80" r="20" stroke="black" stroke-width="4" fill="white"></circle>
+            <g id="rEyes">
+              <circle cx="193" cy="80" r="2"></circle>
+              <circle cx="207" cy="80" r="2"></circle>
+            </g>
+            <g id="xEyes" class="hide">
+              <line x1="190" y1="78" x2="196" y2="84"></line>
+              <line x1="204" y1="78" x2="210" y2="84"></line>
+              <line x1="190" y1="84" x2="196" y2="78"></line>
+              <line x1="204" y1="84" x2="210" y2="78"></line>
+            </g>
           </g>
-          <g id="xEyes" class="hide">
-            <line x1="190" y1="78" x2="196" y2="84"></line>
-            <line x1="204" y1="78" x2="210" y2="84"></line>
-            <line x1="190" y1="84" x2="196" y2="78"></line>
-            <line x1="204" y1="84" x2="210" y2="78"></line>
-          </g>
+          <line id="bodyLine" x1="200" y1="100" x2="200" y2="150"></line>
+          <line id="armL" x1="200" y1="120" x2="170" y2="140"></line>
+          <line id="armR" x1="200" y1="120" x2="230" y2="140"></line>
+          <line id="legL" x1="200" y1="150" x2="180" y2="190"></line>
+          <line id="legR" x1="200" y1="150" x2="220" y2="190"></line>
         </g>
-        <line id="bodyLine" x1="200" y1="100" x2="200" y2="150"></line>
-        <line id="armL" x1="200" y1="120" x2="170" y2="140"></line>
-        <line id="armR" x1="200" y1="120" x2="230" y2="140"></line>
-        <line id="legL" x1="200" y1="150" x2="180" y2="190"></line>
-        <line id="legR" x1="200" y1="150" x2="220" y2="190"></line>
-      </g>
-    </svg>
-  </div>
+      </svg>
+    </div>
   </div>
   <script src="js/scripts.js"></script>
 </body>
