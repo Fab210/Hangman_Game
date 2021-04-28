@@ -86,6 +86,10 @@ body{
     border-color: #7E90F8;
 }
 
+.title{
+    font-family: 'Original Surfer', cursive;
+}
+
 
 /* HANGMAN SVG */
 /*---------------------------------------*/
