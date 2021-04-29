@@ -17,7 +17,6 @@ function generateWordTofind() {
       .then((data) => renderLetters(data));
 
     function renderLetters(data) {
-      debugger;
       wordToFind = data[0].word;
       wordToFind = wordToFind.toUpperCase();
       wordDefinition = data[0].definition;
@@ -27,8 +26,6 @@ function generateWordTofind() {
         const element = wordInarray[i];
 
         var generateLetters = document.createElement("div");
-
-        //generateLetters.id = "letter " + element;
         generateLetters.innerText = element;
         generateLetters.className =
           "letter_" + element + " " + "hideLetter" + " " + "noselect";
@@ -37,9 +34,7 @@ function generateWordTofind() {
         generateLetters.style.borderBottomColor = "#000";
         generateLetters.style.color = "#F2F3FB";
         generateLetters.style.marginLeft = "6px";
-
         generateLetters.style.width = "40px";
-
         generateLetters.style.textAlign = "center";
         var wordToFindDiv = document.getElementById("wordToFind");
         wordToFindDiv.appendChild(generateLetters);
@@ -49,7 +44,6 @@ function generateWordTofind() {
 }
 
 function searchLetterInWord(letter) {
-  debugger;
   var searchLetter = wordToFind.includes(letter);
   var wordLength = wordToFind.length;
   var animatedClasse = "animate__animated";
@@ -65,26 +59,21 @@ function searchLetterInWord(letter) {
     }
     allLettersFound = x.length + allLettersFound;
     if (wordLength === allLettersFound) {
-      
       disableAllButtons();
       help();
+      document.getElementById("numbersOfTry").classList.add(animatedClasse, specialAnimation);
+      document.getElementById("numbersOfTry").innerHTML ="YOU WIN !!!";
+     
       
-      $(document).ready(function(){
-        
-            $("#myModal").modal('show');
-        
-      });
     }
   } else {
-    //alert("no such letter found");
-    debugger;
     tryToFindLetter--;
+    document.getElementById("numbersOfTry").innerHTML =
+      "Guesses Remaining :  " + tryToFindLetter;
     switch (tryToFindLetter) {
       case 0:
-        
         document.getElementById("letter " + letter).disabled = true;
-        document.getElementById("numbersOfTry").innerHTML =
-          "Guesses Remaining :" + 0;
+        
         disableAllButtons();
         help();
         var x = document.getElementsByClassName("hideLetter");
@@ -94,7 +83,10 @@ function searchLetterInWord(letter) {
         var legR = document.getElementById("legR");
         legR.style.visibility = "visible";
         legR.classList.add(animatedClasse, specialAnimation);
-        alert("game over !");
+        debugger
+        document.getElementById("numbersOfTry").classList.add(animatedClasse, "animate__bounce");
+        document.getElementById("numbersOfTry").innerHTML ="GAME OVER !!!";
+        
         break;
 
       case 1:
@@ -136,18 +128,15 @@ function searchLetterInWord(letter) {
         var line_2 = document.getElementById("line_2");
         line_2.style.visibility = "visible";
         line_2.classList.add(animatedClasse, specialAnimation);
-
         break;
       case 9:
         var line_1 = document.getElementById("line_1");
         line_1.style.visibility = "visible";
         line_1.classList.add(animatedClasse, specialAnimation);
-
         break;
     }
 
-    document.getElementById("numbersOfTry").innerHTML =
-      "Guesses Remaining :  " + tryToFindLetter;
+    
     document.getElementById("letter " + letter).disabled = true;
     document.getElementById("letter " + letter).style.backgroundColor =
       "#FC7474";
@@ -193,5 +182,3 @@ function generateButtonsABC() {
 function help() {
   document.querySelector("#ShowButton").innerText = wordDefinition;
 }
-
-
