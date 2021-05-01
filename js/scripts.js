@@ -1,12 +1,21 @@
+//
+// ─── VARIABLES ──────────────────────────────────────────────────────────────────
+//
 var wordToFind = "";
 var wordDefinition = "";
 var wordObject;
 var tryToFindLetter = 10;
 var allLettersFound = 0;
 
+//
+// ─── FUNCTIONS ──────────────────────────────────────────────────────────────────
+//
 generateWordTofind();
 generateButtonsABC();
 
+//
+// ─── CALL API TO GET A RANDOM WORD ──────────────────────────────────────────────
+//
 function generateWordTofind() {
   document.getElementById("numbersOfTry").innerHTML =
     "Guesses Remaining :" + tryToFindLetter;
@@ -15,44 +24,48 @@ function generateWordTofind() {
     fetch("https://random-words-api.vercel.app/word")
       .then((response) => response.json())
       .then((data) => renderLetters(data));
-
-    function renderLetters(data) {
-      wordToFind = data[0].word;
-      wordToFind = wordToFind.toUpperCase();
-      wordDefinition = data[0].definition;
-      var wordInarray = wordToFind.split("");
-
-      for (let i = 0; i < wordInarray.length; i++) {
-        const element = wordInarray[i];
-
-        var generateLetters = document.createElement("div");
-        generateLetters.innerText = element;
-        generateLetters.className =
-          "letter_" + element + " " + "hideLetter" + " " + "noselect";
-        generateLetters.style.borderBottomStyle = "solid";
-        generateLetters.style.borderBottomWidth = "1px";
-        generateLetters.style.borderBottomColor = "#000";
-        generateLetters.style.color = "#F2F3FB";
-        generateLetters.style.marginLeft = "6px";
-        generateLetters.style.width = "40px";
-        generateLetters.style.textAlign = "center";
-        var wordToFindDiv = document.getElementById("wordToFind");
-        wordToFindDiv.appendChild(generateLetters);
-      }
-    }
   });
 }
 
+//
+// ─── RENDER THEN HIDE THE WORD ON LOADING PAGE ──────────────────────────────────
+// 
+function renderLetters(data) {
+  wordToFind = data[0].word;
+  wordToFind = wordToFind.toUpperCase();
+  wordDefinition = data[0].definition;
+  var wordInarray = wordToFind.split("");
+  for (let i = 0; i < wordInarray.length; i++) {
+    const element = wordInarray[i];
+    var generateLetters = document.createElement("div");
+    generateLetters.innerText = element;
+    generateLetters.className = "letter_" + element + " " + "hideLetter" + " " + "noselect";
+    generateLetters.style.borderBottomStyle = "solid";
+    generateLetters.style.borderBottomWidth = "1px";
+    generateLetters.style.borderBottomColor = "#000";
+    generateLetters.style.color = "#F2F3FB";
+    generateLetters.style.marginLeft = "6px";
+    generateLetters.style.width = "40px";
+    generateLetters.style.textAlign = "center";
+    var wordToFindDiv = document.getElementById("wordToFind");
+    wordToFindDiv.appendChild(generateLetters);
+  }
+}
+
+//
+// ─── SEARCH SELECTED LETTER IN WORD ─────────────────────────────────────────────
+//
 function searchLetterInWord(letter) {
   var searchLetter = wordToFind.includes(letter);
   var wordLength = wordToFind.length;
   var animatedClasse = "animate__animated";
   var specialAnimation = "animate__slideInDown";
+  //
+  // ─── IF YOU FIND A LETTER ───────────────────────────────────────────────────────
+  //
   if (searchLetter == true) {
-    //alert("you find a letter !");
     document.getElementById("letter " + letter).disabled = true;
-    document.getElementById("letter " + letter).style.backgroundColor =
-      "#FC7474";
+    document.getElementById("letter " + letter).style.backgroundColor = "#FC7474";
     var x = document.getElementsByClassName("letter_" + letter);
     for (i = 0; i < x.length; i++) {
       x[i].style.color = "#000";
@@ -62,18 +75,17 @@ function searchLetterInWord(letter) {
       disableAllButtons();
       help();
       document.getElementById("numbersOfTry").classList.add(animatedClasse, specialAnimation);
-      document.getElementById("numbersOfTry").innerHTML ="YOU WIN !!!";
-     
-      
+      document.getElementById("numbersOfTry").innerHTML = "YOU WIN !!!";
     }
   } else {
     tryToFindLetter--;
-    document.getElementById("numbersOfTry").innerHTML =
-      "Guesses Remaining :  " + tryToFindLetter;
+    document.getElementById("numbersOfTry").innerHTML = "Guesses Remaining :  " + tryToFindLetter;
+    //
+    // ─── 10 TRIES TILL GAME OVER ─────────────────────────────────────
+    //
     switch (tryToFindLetter) {
       case 0:
         document.getElementById("letter " + letter).disabled = true;
-        
         disableAllButtons();
         help();
         var x = document.getElementsByClassName("hideLetter");
@@ -83,12 +95,9 @@ function searchLetterInWord(letter) {
         var legR = document.getElementById("legR");
         legR.style.visibility = "visible";
         legR.classList.add(animatedClasse, specialAnimation);
-        debugger
         document.getElementById("numbersOfTry").classList.add(animatedClasse, "animate__bounce");
-        document.getElementById("numbersOfTry").innerHTML ="GAME OVER !!!";
-        
+        document.getElementById("numbersOfTry").innerHTML = "GAME OVER !!!";
         break;
-
       case 1:
         var legL = document.getElementById("legL");
         legL.style.visibility = "visible";
@@ -135,14 +144,15 @@ function searchLetterInWord(letter) {
         line_1.classList.add(animatedClasse, specialAnimation);
         break;
     }
-
-    
+    // ──── DISABLE SELECTED BUTTON LETTER ─────
     document.getElementById("letter " + letter).disabled = true;
-    document.getElementById("letter " + letter).style.backgroundColor =
-      "#FC7474";
+    document.getElementById("letter " + letter).style.backgroundColor = "#FC7474";
   }
 }
 
+//
+// ─── DISABLE ALL ALPHABET BUTTONS ───────────────────────────────────────────────
+//
 function disableAllButtons() {
   var y = document.getElementsByClassName("generatedButtons");
   for (i = 0; i < y.length; i++) {
@@ -151,9 +161,11 @@ function disableAllButtons() {
   }
 }
 
+//
+// ─── CREATE ALPHABETS BUTTONS ───────────────────────────────────────────────────
+//
 function generateButtonsABC() {
   var alphabet = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
-
   var alphabetInarray = alphabet.split(" ");
 
   for (let i = 0; i < alphabetInarray.length; i++) {
@@ -179,6 +191,9 @@ function generateButtonsABC() {
   }
 }
 
+//
+// ─── SHOW DEFINITION OF WORD ────────────────────────────────────────────────────
+//
 function help() {
   document.querySelector("#ShowButton").innerText = wordDefinition;
 }
